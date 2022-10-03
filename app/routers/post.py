@@ -1,5 +1,7 @@
 from fastapi import APIRouter
-from app.database.crud import read
+from fastapi.responses import ORJSONResponse
+from app.database.crud import read, create
+from app.models.post import Post, CreatePost
 
 router = APIRouter()
 
@@ -12,7 +14,6 @@ async def posts_list():
     data = []
     for post in post_list:
         user_name = await read("user_name", "user", f"id={post[3]}")
-        print(user_name)
         data.append({
             "postId": post[0],
             "content": post[1],
@@ -21,3 +22,12 @@ async def posts_list():
         })
 
     return data
+
+
+@router.post("/posts/", tags=["posts"], response_model=Post)
+async def posts_create(post: CreatePost):
+    post_dict = post.dict()
+    table = "Post"
+    new_id = await create(table, post_dict)
+    data = {"new_id": new_id}
+    return ORJSONResponse([data])
