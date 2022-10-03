@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.database.crud import read_list
+from app.database.crud import read
 
 router = APIRouter()
 
@@ -8,7 +8,7 @@ router = APIRouter()
 async def users_list():
     req_column = "id, user_name"
     req_table = "user"
-    user_list = await read_list(req_column, req_table)
+    user_list = await read(req_column, req_table)
 
     data = []
     for user in user_list:
