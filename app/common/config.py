@@ -17,7 +17,7 @@ class Config:
 @dataclass
 class LocalConfig(Config):
     DB_HOST: str = environ['DB_HOST']
-    DB_PORT: str = environ['DB_PORT']
+    DB_PORT: int = environ['DB_PORT']
     DB_USER: str = environ['DB_USER']
     DB_PW: str = environ['DB_PASSWORD']
     DB_NAME: str = environ['DB_NAME']
