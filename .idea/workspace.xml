@@ -7,6 +7,7 @@
     <list default="true" id="fcd1453e-0d3c-4857-b352-bbf37af2cd6f" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/app/models/post.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/routers/post.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/950aaca1-efa6-429c-bd24-27c5e50d62ed.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/950aaca1-efa6-429c-bd24-27c5e50d62ed.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/database/conn.py" beforeDir="false" />
