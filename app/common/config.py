@@ -16,13 +16,11 @@ class Config:
 
 @dataclass
 class LocalConfig(Config):
-    DB_URL: str = 'mysql://{}:{}@{}:{}/{}'.format(
-        environ['DB_USER'],
-        environ['DB_PASSWORD'],
-        environ['DB_HOST'],
-        environ['DB_PORT'],
-        environ['DB_NAME']
-    )
+    DB_HOST: str = environ['DB_HOST']
+    DB_PORT: str = environ['DB_PORT']
+    DB_USER: str = environ['DB_USER']
+    DB_PW: str = environ['DB_PASSWORD']
+    DB_NAME: str = environ['DB_NAME']
     PROJ_RELOAD: bool = True
 
 

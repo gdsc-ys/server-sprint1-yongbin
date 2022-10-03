@@ -1,9 +1,8 @@
-from dataclasses import asdict
 import uvicorn
+from dataclasses import asdict
 from fastapi import FastAPI
 from app.common.config import conf
-from app.database.conn import db
-
+from app.database.conn import connect_mysql
 from app.routers import root, user
 
 
@@ -11,11 +10,13 @@ def create_app():
     c = conf()
     app = FastAPI()
     conf_dict = asdict(c)
-    db.init_app(app, **conf_dict)
 
     # router
     app.include_router(root.router)
     app.include_router(user.router, tags=["user"])
+
+    # DB_pool
+    app.state.db_pool = connect_mysql(**conf_dict)
 
     return app
 
