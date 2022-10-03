@@ -2,7 +2,7 @@ from dataclasses import asdict
 from fastapi import FastAPI
 from app.common.config import conf
 # from app.database.conn import connect_mysql
-from app.routers import root, user, post
+from app.routers import root, user, post, comment
 import aiomysql
 
 
@@ -15,6 +15,7 @@ conf_dict = asdict(conf)
 app.include_router(root.router)
 app.include_router(user.router, tags=["user"])
 app.include_router(post.router, tags=["posts"])
+app.include_router(comment.router, tags=["comments"])
 
 # DB_connect
 @app.on_event("startup")
