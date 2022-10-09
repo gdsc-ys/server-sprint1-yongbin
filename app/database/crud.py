@@ -1,5 +1,3 @@
-import aiomysql
-
 from app import main
 from typing import Union
 

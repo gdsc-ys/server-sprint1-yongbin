@@ -24,8 +24,18 @@ class LocalConfig(Config):
     PROJ_RELOAD: bool = True
 
 
+@dataclass
+class RedisConfig:
+    REDIS_HOST: str = environ["REDIS_HOST"]
+    REDIS_PORT: int = environ["REDIS_PORT"]
+    REDIS_DATABASE: int = environ["REDIS_DATABASE"]
+
+
 def conf():
     config = dict(local=LocalConfig())
     return config.get("local")
 
 
+def redis_conf():
+    config = dict(local=RedisConfig())
+    return config.get("local")

@@ -1,7 +1,8 @@
 from dataclasses import asdict
 from fastapi import FastAPI
-from app.common.config import conf
+from app.common.config import conf, redis_conf
 from app.routers import root, user, post, comment
+import aioredis
 import aiomysql
 
 
@@ -23,3 +24,14 @@ async def connect_mysql():
     app.state.db_pool = await aiomysql.create_pool(host=conf_dict['DB_HOST'], port=int(conf_dict['DB_PORT']),
                                       user=conf_dict['DB_USER'], password=conf_dict['DB_PW'],
                                       db=conf_dict['DB_NAME'], autocommit=False, minsize=10, maxsize=40)
+
+
+@app.on_event("startup")
+async def redis_config():
+    redis_conf_dict = asdict(redis_conf())
+    try:
+        app.state.rd = await aioredis.from_url(f"redis://{redis_conf_dict['REDIS_HOST']}")
+    except:
+        print("redis connection fail")
+
+    print(app.state.rd)
