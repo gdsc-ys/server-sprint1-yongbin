@@ -4,7 +4,6 @@ import json
 
 async def write_redis(key: int, value: json):
     rd = main.app.state.rd
-    print(value)
     try:
         value_json = json.dumps(value)
         res = await rd.set(key, value_json)
@@ -17,8 +16,8 @@ async def write_redis(key: int, value: json):
 async def read_redis(key: int):
     rd = main.app.state.rd
     value = await rd.get(key)
-
     if value is None:
         return False
     else:
+        # print("redis hit")
         return json.loads(value)

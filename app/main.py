@@ -33,5 +33,3 @@ async def redis_config():
         app.state.rd = await aioredis.from_url(f"redis://{redis_conf_dict['REDIS_HOST']}")
     except:
         print("redis connection fail")
-
-    print(app.state.rd)
